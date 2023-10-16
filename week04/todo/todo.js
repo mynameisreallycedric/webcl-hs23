@@ -4,7 +4,7 @@ import { Scheduler }               from "../kolibri/dataflow/dataflow.js";
 import { todoItemProjector }       from "./todoProjector.js";
 import { fortuneService }          from "./fortuneService.js";
 
-export { TodoController, TodoItemsView, TodoTotalView, TodoOpenView}
+export { TodoController, TodoItemsView, TodoTotalView, TodoOpenView, TodoChartView}
 
 const TodoController = () => {
 
@@ -97,6 +97,26 @@ const TodoOpenView = (todoController, numberOfOpenTasksElement) => {
 
     // binding
 
+    todoController.onTodoAdd(todo => {
+        render();
+        todo.onDoneChanged(render);
+    });
+    todoController.onTodoRemove(render);
+};
+
+const TodoChartView = (todoController, chartElement) => {
+
+    const render = () => {
+        const totalTodos = todoController.numberOfTodos();
+        const openTodos = todoController.numberOfopenTasks();
+        const closedTodosPercentage = ((totalTodos - openTodos) / totalTodos) * 100;
+
+        // Zuerst von 0 bis Anzahl geschlossene Todos
+        // Dann von Anzahl geschlossenene Todos bis 100
+        chartElement.style.background = "conic-gradient(#33FF57 0% " + closedTodosPercentage + "%, #FF5733 " + closedTodosPercentage + "% 100%)";
+    };
+
+    // Binding
     todoController.onTodoAdd(todo => {
         render();
         todo.onDoneChanged(render);

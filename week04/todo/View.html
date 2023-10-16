@@ -18,6 +18,10 @@
 
         <div>Tasks: <span id="numberOfTasks">0</span></div>
         <div>Open:  <span id="openTasks"    >0</span></div>
+
+        <div class="chart-div">
+            <div id="chart"></div>
+        </div>
     </div>
 </main>
 
@@ -25,4 +29,19 @@
 
 </body>
 
+<style>
+    .chart-div {
+        display: flex;
+        justify-content: center;
+        margin-top: 1em;
+    }
+    #chart {
+        border-radius: 50%;
+        width: 10em;
+        height: 10em;
+    }
+</style>
+
 </html>
+
+

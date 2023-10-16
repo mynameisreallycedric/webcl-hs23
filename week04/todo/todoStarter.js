@@ -1,5 +1,5 @@
 
-import {TodoController, TodoOpenView, TodoTotalView, TodoItemsView} from './todo.js';
+import {TodoController, TodoOpenView, TodoTotalView, TodoItemsView, TodoChartView} from './todo.js';
 
 const todoController = TodoController();
 
@@ -13,6 +13,7 @@ document.getElementById('fortune').onclick = _ => todoController.addFortuneTodo(
 TodoItemsView(todoController, document.getElementById('todoContainer'));
 TodoTotalView(todoController, document.getElementById('numberOfTasks'));
 TodoOpenView (todoController, document.getElementById('openTasks'));
+TodoChartView(todoController, document.getElementById('chart'));
 
 // init the model
 
