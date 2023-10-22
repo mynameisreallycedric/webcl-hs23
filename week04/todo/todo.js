@@ -55,6 +55,7 @@ const TodoController = () => {
     return {
         numberOfTodos:      todoModel.count,
         numberOfopenTasks:  () => todoModel.countIf( todo => ! todo.getDone() ),
+        numberOfClosedTasks:() => todoModel.countIf( todo =>   todo.getDone() ),
         addTodo:            addTodo,
         addFortuneTodo:     addFortuneTodo,
         removeTodo:         todoModel.del,
@@ -109,7 +110,8 @@ const TodoChartView = (todoController, chartElement) => {
     const render = () => {
         const totalTodos = todoController.numberOfTodos();
         const openTodos = todoController.numberOfopenTasks();
-        const closedTodosPercentage = ((totalTodos - openTodos) / totalTodos) * 100;
+        const closedTodos = todoController.numberOfClosedTasks();
+        const closedTodosPercentage = ( closedTodos / totalTodos) * 100;
 
         // Zuerst von 0 bis Anzahl geschlossene Todos
         // Dann von Anzahl geschlossenene Todos bis 100
